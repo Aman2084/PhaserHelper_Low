@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<fxpProperties abbreviated="false" authoringTool="Flex Builder" compiles="true" parentProject="ec306de7-6a17-4044-9b76-1dc7d22710b7" projectUUID="ec306de7-6a17-4044-9b76-1dc7d22710b7" pureCatalystProject="false" sdkVersion="4.6.0" uuid="9a2c823a-8abe-4cfe-991f-30ca9fe7209c" version="15">
+  <projects>
+    <project filename="AmanQuick_AS3.fxpl" position="2" projectUUID="92ece63e-a00b-48dd-8507-9e0d1307e6cd" uuid="9a2c823a-8abe-4cfe-991f-30ca9fe7209c"/>
+  </projects>
+  <src/>
+  <swc>
+    <linked location="sdkPlaceHolder" path="sdkPlaceHolder" position="0" uuid="9a2c823a-8abe-4cfe-991f-30ca9fe7209c"/>
+    <linked location="/libs" path="/libs" position="1" uuid="9a2c823a-8abe-4cfe-991f-30ca9fe7209c"/>
+  </swc>
+  <misc/>
+  <theme/>
+  <mxmlFormattingPrefs groupAttributesByState="false" maxLineWidth="0" mxmlAlignAttributes="false" mxmlKeepAttributeValuesOrganized="false"/>
+</fxpProperties>

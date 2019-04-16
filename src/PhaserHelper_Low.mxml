@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+						xmlns:mx="library://ns.adobe.com/flex/mx" 
+						layout="absolute" xmlns:com="com.*" 
+						creationComplete="init(event)">
+	<fx:Script>
+		<![CDATA[
+			import com.CodeTool;
+			import com.aman.event.ZEvent;
+			
+			import mx.controls.Alert;
+			import mx.events.FlexEvent;
+			
+			private var _coder:CodeTool = new CodeTool();
+			private var _stream:FileStream = new FileStream();
+			
+			
+			protected function init($e:FlexEvent):void{
+				this.btn_path.addEventListener(ZEvent.Selected , onSelete);
+				this.btn_export.addEventListener(ZEvent.Selected , onExport);
+			}
+			
+			private function onSelete($e:ZEvent):void{
+				_coder.imgUrl = $e.data as String;
+				var s:String = _coder.getCode(txt_path.text , txt_key.text);
+				if(!s){
+					Alert.show("这个文件夹里面没有图片！")
+				}else{
+					this.txt_code.text = s;
+					btn_export.enabled = true;
+				}
+			}
+			
+			private function onExport($e:ZEvent):void{
+				var s:String = ($e.data as String) + "/MyScene.ts"
+				var f:File = new File(s);
+				_stream.open(f , FileMode.WRITE);
+				var b:ByteArray = new ByteArray();
+				s = _coder.getCode(txt_path.text , txt_key.text);
+				b.writeMultiByte(s , "utf-8")
+				_stream.writeBytes(b);
+				_stream.close();
+				
+			}
+			
+		]]>
+	</fx:Script>
+	
+	
+		<mx:HDividedBox width="100%" height="100%">
+			<mx:VBox  minWidth="200" paddingLeft="10" paddingTop="5" verticalGap="5"
+					  horizontalScrollPolicy="off" verticalScrollPolicy="off"
+					  fontSize="14">
+				<mx:HBox>
+					<mx:Label text="图片相对路径"/>
+					<mx:TextInput id="txt_path" width="100%" text="img/"/>
+				</mx:HBox>
+				<mx:HBox>
+					<mx:Label text="图片key前缀"/>
+					<mx:TextInput id="txt_key" width="100%" text="test_"/>
+				</mx:HBox>
+				
+				<com:BrowseButton id="btn_path" 
+								  buttonMode="true" label="选择图片所在文件夹"/>
+				<com:BrowseButton id="btn_export"
+						   buttonMode="true" label="导出代码" enabled="false"/>
+			</mx:VBox>	
+			
+			<mx:Canvas width="100%" height="100%" backgroundColor="0x000000"
+					   horizontalScrollPolicy="off" verticalScrollPolicy="off">
+				<mx:Text id="txt_code" width="100%" height="100%" color="0xffffff" fontSize="12"/>
+			</mx:Canvas>
+		</mx:HDividedBox>
+</mx:WindowedApplication>
+ 
